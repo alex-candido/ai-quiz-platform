@@ -1,15 +1,21 @@
+import "reflect-metadata";
+
+import { container } from 'tsyringe';
+import { CreateQuestionService } from '../../../services/CreateQuestionService';
 
 export default class QuestionsController {
   public async create(request: Request, _response: Response): Promise<any> {
-    const body = await request.json();
-    const { amount, topic, type } = await body;
+    const { name, description, question, answer } = await request.json();
 
-    const data = {
-      amount: amount,
-      topic: topic,
-      type:type
-    }
+    const createQuestion = container.resolve(CreateQuestionService);
 
-    return data;
+    const questionData = await createQuestion.execute({
+      name,
+      description,
+      question,
+      answer,
+    });
+
+    return questionData
   }
 }
