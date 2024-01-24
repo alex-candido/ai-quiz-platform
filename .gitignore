@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/.history
+.history/
 /.pnp
 .pnp.js
 .yarn/install-state.gz
@@ -27,7 +27,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
