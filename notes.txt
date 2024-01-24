@@ -1,9 +1,9 @@
 ## Capitulos
 
-0:00 Intro & Demo
-4:50 Setup Project
-7:10 Setup Shadcn
-10:12 Setup Database & Prisma
+---0:00 Intro & Demo
+---4:50 Setup Project
+---7:10 Setup Shadcn
+--10:12 Setup Database & Prisma
 16:15 Setup NextAuth
 30:22 Setup Providers
 34:02 Setup Navbar
