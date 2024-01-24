@@ -1,0 +1,16 @@
+
+POST http://localhost:3000/api/questions/
+Content-Type: application/json
+
+{
+  "name": "Alex candido",
+  "description": "aluno ifce",
+  "question": "quantas pessoas voce mora na sua residencia(irmaos, pais, familiares, conhecidos) ?",
+  "answer": "moro com meus pais"
+}
+
+###
+GET http://localhost:3000/api/questions/ee3d08f6-a571-43c7-97e2-7b5336f455ec
+
+###
+GET http://localhost:3000/api/questions/
