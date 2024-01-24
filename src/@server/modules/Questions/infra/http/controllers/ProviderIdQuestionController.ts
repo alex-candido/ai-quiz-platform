@@ -11,7 +11,6 @@ export default class ProviderIdQuestionController {
 
     const questionData = await ListProviderIdQuestion.execute({ id: response.questionId});
 
-    console.log(questionData);
     return questionData
   }
 }

@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import { uuid } from 'uuidv4';
+import { v4 as uuidv4 } from 'uuid';
 
 import ICreateQuestionDTO from '../../../dtos/ICreateQuestionDTO';
 import IQuestionsRepository from '../../../repositories/IQuestionsRepository';
@@ -22,7 +22,7 @@ class QuestionsRepository implements IQuestionsRepository {
     answer,
   }: ICreateQuestionDTO): Promise<Question> {
     const questionData = Object({
-      id: uuid(),
+      id: uuidv4(),
       name,
       description,
       question,

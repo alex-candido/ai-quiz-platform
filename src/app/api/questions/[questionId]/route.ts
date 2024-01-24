@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
+import '@/@server/shared/container/index';
+
 import { GetServerIdQuestionsRouter } from '@/@server/shared/infra/http/server';
 
 export async function GET(

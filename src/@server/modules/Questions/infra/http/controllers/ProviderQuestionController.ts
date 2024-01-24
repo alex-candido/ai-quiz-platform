@@ -9,7 +9,6 @@ export default class ProviderQuestionController {
 
     const questionsData = await listQuestionsService.execute();
 
-    console.log(questionsData);
     return questionsData;
   }
 }
