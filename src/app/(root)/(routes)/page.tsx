@@ -16,6 +16,8 @@ export default function SetupPage() {
   return (
     <div className="section">
       <div className="container">
+        <div>SetupPage</div>
+        <br />
         <div>{question.question}</div>
       </div>
     </div>
