@@ -48,3 +48,7 @@
 - feature/creating-redux-structure
   - **Descrição**
     - Adicionando estrutura do aplicativo Redux Toolkit;
+
+- feature/creating-prisma-structure
+  - **Descrição**
+    - Adicionando estrutura do prisma;
