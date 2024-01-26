@@ -4,7 +4,7 @@
 ---4:50 Setup Project
 ---7:10 Setup Shadcn
 --10:12 Setup Database & Prisma
-16:15 Setup NextAuth
+--16:15 Setup NextAuth
 30:22 Setup Providers
 34:02 Setup Navbar
 56:24 Theme Toggle
@@ -52,3 +52,7 @@
 - feature/creating-prisma-structure
   - **Descrição**
     - Adicionando estrutura do prisma;
+
+- feature/creating-nextauth-structure
+  - **Descrição**
+    - Adicionando estrutura do nextAuth;
