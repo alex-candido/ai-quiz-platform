@@ -1,9 +1,8 @@
 import { prisma } from '@/@server/shared/infra/http/db/index';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import {
-  getServerSession,
   type DefaultSession,
-  type NextAuthOptions,
+  type NextAuthOptions
 } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
@@ -59,6 +58,3 @@ export const authOptions: NextAuthOptions = {
   ],
 };
 
-export const getAuthSession = () => {
-  return getServerSession(authOptions);
-};

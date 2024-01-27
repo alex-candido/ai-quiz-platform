@@ -1,8 +1,25 @@
+'use client';
 
-const SignInButton = () => {
-  return (
-    <div>SignInButton</div>
-  )
+import React from 'react';
+
+import { signIn } from 'next-auth/react';
+
+import { Button } from '@/components/ui/button';
+
+interface SignInButtonProps {
+  text: string;
 }
 
-export default SignInButton
+const SignInButton: React.FC<SignInButtonProps> = ({ text }) => {
+  return (
+    <Button
+      onClick={() => {
+        signIn('google').catch(console.error);
+      }}
+    >
+      {text}
+    </Button>
+  );
+};
+
+export default SignInButton;
