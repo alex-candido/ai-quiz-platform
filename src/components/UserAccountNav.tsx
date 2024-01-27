@@ -1,8 +1,10 @@
-import Link from "next/link";
+"use client";
 
-import { LogOut } from "lucide-react";
+import Link from 'next/link';
+
+import { LogOut } from 'lucide-react';
 import type { User } from 'next-auth';
-import { signOut } from "next-auth/react";
+import { signOut } from 'next-auth/react';
 
 import UserAvatar from '@/components/UserAvatar';
 
