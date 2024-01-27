@@ -2,7 +2,7 @@ import { getAuthSession } from "@/lib/session";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import HistoryComponent from "../HistoryComponent";
+import HistoryComponent from "@/components/HistoryComponent";
 
 import {
   Card,
@@ -18,7 +18,7 @@ const RecentActivityCard = async () => {
     return redirect("/");
   }
 
-  // value return redux
+  // implement redux
   const games_count = "";
 
   return (
