@@ -1,9 +1,14 @@
-import { ProviderAllRouter, ProviderIdRouter } from "@/@server/modules/Questions/infra/http/routes/provider.routes";
+import { ProviderQuestionsAllRouter, ProviderQuestionsIdRouter } from "@/@server/modules/Questions/infra/http/routes/provider.routes";
 import { QuestionsRouter } from "@/@server/modules/Questions/infra/http/routes/questions.routes";
-import { GetAllQuestions } from "../abstract/getAllQuestions";
-import { GetIdQuestions, IGetResponse } from "../abstract/getIdQuestions";
-import { PostQuestions } from "../abstract/postQuestions";
 
+import { GetAllQuestions } from "@/@server/shared/infra/http/abstract/questions/getAllQuestions";
+import { GetIdQuestions, IGetResponse } from "@/@server/shared/infra/http/abstract/questions/getIdQuestions";
+import { PostQuestions } from "@/@server/shared/infra/http/abstract/questions/postQuestions";
+
+import { ProviderTopicsAllRouter } from "@/@server/modules/Game/infra/http/routes/provider.routes";
+import { GetAllTopics } from "@/@server/shared/infra/http/abstract/game/getAllTopics";
+
+// START QUESTIONS SERVER
 export class PostServerQuestionsRouter extends PostQuestions {
   constructor(public readonly Request: Request, public readonly Response: Response) {
     super(Request, Response)
@@ -19,7 +24,7 @@ export class GetServerIdQuestionsRouter extends GetIdQuestions {
     super(Request, Response)
   }
   public async get(): Promise<any> {
-    const questionsRouter = new ProviderIdRouter(this.Request, this.response)
+    const questionsRouter = new ProviderQuestionsIdRouter(this.Request, this.response)
     return questionsRouter.use()
   }
 }
@@ -29,8 +34,20 @@ export class GetServerAllQuestionsRouter extends GetAllQuestions {
     super(Request, Response)
   }
   public async get(): Promise<any> {
-    const questionsRouter = new ProviderAllRouter(this.Request, this.response)
+    const questionsRouter = new ProviderQuestionsAllRouter(this.Request, this.response)
     return questionsRouter.use()
   }
 }
+// END QUESTIONS SERVER
 
+// START GAME SERVER
+export class GetServerAllTopicsRouter extends GetAllTopics {
+  constructor(public readonly Request: Request, public readonly Response: Response) {
+    super(Request, Response)
+  }
+  public async get(): Promise<any> {
+    const topicsRouter = new ProviderTopicsAllRouter(this.Request, this.response)
+    return topicsRouter.use()
+  }
+}
+// END GAME SERVER

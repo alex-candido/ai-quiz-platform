@@ -2,7 +2,7 @@ import "reflect-metadata";
 
 import { container } from 'tsyringe';
 
-import { IGetResponse } from '@/@server/shared/infra/http/abstract/getIdQuestions';
+import { IGetResponse } from '@/@server/shared/infra/http/abstract/questions/getIdQuestions';
 import { ListProviderIdQuestionService } from '../../../services/ListProviderIdQuestionService';
 
 export default class ProviderIdQuestionController {

@@ -1,9 +1,11 @@
+import storage from 'redux-persist/lib/storage';
+
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 
 import questionsSlice from "@/redux/slices/questions-slice";
-import storage from 'redux-persist/lib/storage';
+import topicsSlice from "@/redux/slices/topics-slice";
 
 const rootPersistConfig = {
   key: "root",
@@ -12,11 +14,14 @@ const rootPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  questions: persistReducer(rootPersistConfig, questionsSlice),
+  questions: questionsSlice,
+  topics: topicsSlice
 });
 
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({
     serializableCheck: {

@@ -1,7 +1,7 @@
 import { api } from "@/lib/fetcher";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const createQuestionsAsync = createAsyncThunk(
+export const createQuestionsActionAsync = createAsyncThunk(
   'questions/getAllQuestionsAsync',
   async () => {
     const data = {

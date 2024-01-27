@@ -1,10 +1,10 @@
 
-import { GetAllQuestions } from "@/@server/shared/infra/http/abstract/getAllQuestions";
-import { GetIdQuestions, IGetResponse } from "@/@server/shared/infra/http/abstract/getIdQuestions";
+import { GetAllQuestions } from "@/@server/shared/infra/http/abstract/questions/getAllQuestions";
+import { GetIdQuestions, IGetResponse } from "@/@server/shared/infra/http/abstract/questions/getIdQuestions";
 import ProviderIdQuestionController from "../controllers/ProviderIdQuestionController";
 import ProviderQuestionController from "../controllers/ProviderQuestionController";
 
-export class ProviderIdRouter extends GetIdQuestions {
+export class ProviderQuestionsIdRouter extends GetIdQuestions {
   constructor(public readonly Request: Request, public readonly Response: IGetResponse) {
     super(Request, Response)
   }
@@ -14,7 +14,7 @@ export class ProviderIdRouter extends GetIdQuestions {
   }
 }
 
-export class ProviderAllRouter extends GetAllQuestions {
+export class ProviderQuestionsAllRouter extends GetAllQuestions {
   constructor(public readonly Request: Request, public readonly Response: Response) {
     super(Request, Response)
   }

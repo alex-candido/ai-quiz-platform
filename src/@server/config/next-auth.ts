@@ -1,4 +1,4 @@
-import { prisma } from '@/@server/shared/infra/http/db/index';
+import prisma from '@/@server/shared/infra/http/db/data-source';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import {
   type DefaultSession,
