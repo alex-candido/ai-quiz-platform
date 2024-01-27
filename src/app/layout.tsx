@@ -11,7 +11,7 @@ import { Metadata } from 'next';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Quizplatform',
+  title: 'Elearning Platform',
   description: 'Generate by create next app',
 };
 

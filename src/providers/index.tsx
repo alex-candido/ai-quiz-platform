@@ -1,22 +1,20 @@
-"use client";
-import {
-  QueryClient,
-  QueryClientProvider
-} from "@tanstack/react-query";
-import { SessionProvider } from "next-auth/react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { type ThemeProviderProps } from "next-themes/dist/types";
-import ReduxProvider from "./ReduxProvider";
-const queryClient = new QueryClient();
+'use client';
+
+import { type ThemeProviderProps } from 'next-themes/dist/types';
+
+import NextSessionProvider from '@/providers/NextSessionProvider';
+import NextThemesProvider from '@/providers/NextThemesProvider';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
+import ReduxProvider from '@/providers/ReduxProvider';
 
 const Providers = ({ children }: ThemeProviderProps) => {
   return (
     <ReduxProvider>
-      <QueryClientProvider client={queryClient}>
-        <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
-          <SessionProvider>{children}</SessionProvider>
+      <ReactQueryProvider>
+        <NextThemesProvider>
+          <NextSessionProvider>{children}</NextSessionProvider>
         </NextThemesProvider>
-      </QueryClientProvider>
+      </ReactQueryProvider>
     </ReduxProvider>
   );
 };

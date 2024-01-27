@@ -5,8 +5,8 @@
 ---7:10 Setup Shadcn
 --10:12 Setup Database & Prisma
 --16:15 Setup NextAuth
-30:22 Setup Providers
-34:02 Setup Navbar
+--30:22 Setup Providers
+--34:02 Setup Navbar
 56:24 Theme Toggle
 1:01:26 Home Page
 1:05:41 Dashboard Page
