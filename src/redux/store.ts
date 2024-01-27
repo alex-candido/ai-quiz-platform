@@ -2,11 +2,12 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer } from 'redux-persist';
 
+import questionsSlice from "@/redux/slices/questions-slice";
 import storage from 'redux-persist/lib/storage';
-import questionsSlice from "./slices/questions-slice";
 
 const rootPersistConfig = {
   key: "root",
+  version: 1,
   storage: storage,
 };
 
