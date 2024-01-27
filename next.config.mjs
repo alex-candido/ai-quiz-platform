@@ -1,7 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["lh3.googleusercontent.com", "avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.comm',
+        port: '',
+        pathname: '**',
+      }
+    ]
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -13,4 +26,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
