@@ -1,8 +1,35 @@
+import type { User } from 'next-auth';
 
-const UserAccountNav = () => {
-  return (
-    <div>UserAccountNav</div>
-  )
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+interface UserAccountNavProps {
+  user: Pick<User, 'name' | 'image' | 'email'>;
 }
 
-export default UserAccountNav
+const UserAccountNav: React.FC<UserAccountNavProps> = ({ user }) => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger></DropdownMenuTrigger>
+      <DropdownMenuContent className="bg-white" align="end">
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild></DropdownMenuItem>
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem
+          onSelect={event => {
+            event.preventDefault();
+            signOut().catch(console.error);
+          }}
+        ></DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+export default UserAccountNav;
