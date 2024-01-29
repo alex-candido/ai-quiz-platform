@@ -4,7 +4,9 @@ import { Prisma } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 
 import AppDataSource from '@/@server/shared/infra/http/db/data-source';
+import IFindAllProvidersDTO from '../../../dtos/IFindAllProvidersDTO';
 import IGamesRepository from '../../../repositories/IGamesRepository';
+import Game from '../entities/Game';
 
 export const gameRepository = AppDataSource.game;
 
@@ -15,8 +17,22 @@ class GamesRepository implements IGamesRepository {
     this.ormRepository = gameRepository;
   }
 
+  public async findAllGamesByUserId({ userId, limit }: IFindAllProvidersDTO): Promise<Game[]> {
+    const games = this.ormRepository.findMany({
+      take: limit,
+      where: {
+        userId,
+      },
+      orderBy: {
+        timeStarted: "desc",
+      },
+    })
+
+    return games;
+  }
+
   public async findAllGamesCount( userId: string ): Promise<number> {
-    let gameCount = this.ormRepository.count({
+    const gameCount = this.ormRepository.count({
       where: {
         userId,
       },

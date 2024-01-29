@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export abstract class GetAllTopics{
+export abstract class GetUserIdGames {
   public readonly request: NextRequest;
   public readonly response: NextResponse;
 

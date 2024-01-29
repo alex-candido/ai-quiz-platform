@@ -5,6 +5,6 @@ export default interface Game {
   userId: string | FieldRef<"Game", 'String'>
   timeStarted: Date | FieldRef<"Game", 'DateTime'>
   topic: string | FieldRef<"Game", 'String'>
-  timeEnded: Date | FieldRef<"Game", 'DateTime'>
+  timeEnded: Date | null | FieldRef<"Game", 'DateTime'>
   gameType: string | FieldRef<"Game", 'GameType'>
 }

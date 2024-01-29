@@ -7,7 +7,7 @@ interface IGetAllGameCountProps {
 const getAllGameCountActionAsync = async ({
   userId,
 }: IGetAllGameCountProps): Promise<number> => {
-  const url = `/api/game/count/${userId}`;
+  const url = `/api/game/count?userId=${userId}`;
   const { data } = await api.get(url);
 
   return data;

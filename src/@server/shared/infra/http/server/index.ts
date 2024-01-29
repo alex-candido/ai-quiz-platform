@@ -5,9 +5,11 @@ import { GetAllQuestions } from "@/@server/shared/infra/http/abstract/questions/
 import { GetIdQuestions, IGetIdQuestionsResponse } from "@/@server/shared/infra/http/abstract/questions/getIdQuestions";
 import { PostQuestions } from "@/@server/shared/infra/http/abstract/questions/postQuestions";
 
-import { ProviderGameCountIdRouter, ProviderTopicsAllRouter } from "@/@server/modules/Game/infra/http/routes/provider.routes";
+import { ProviderGamesCountIdRouter, ProviderGamesUserIdRouter, ProviderTopicsAllRouter } from "@/@server/modules/Game/infra/http/routes/provider.routes";
 import { GetAllTopics } from "@/@server/shared/infra/http/abstract/game/getAllTopics";
-import { GetIdGamesCount, IGetIdGamesCountResponse } from "@/@server/shared/infra/http/abstract/game/getIdGameCount";
+import { GetIdGamesCount } from "@/@server/shared/infra/http/abstract/game/getIdGamesCount";
+import { NextRequest, NextResponse } from "next/server";
+import { GetUserIdGames } from "../abstract/game/getUserIdGames";
 
 // START QUESTIONS SERVER
 
@@ -44,7 +46,7 @@ export class GetServerAllQuestionsRouter extends GetAllQuestions {
 // START GAME SERVER
 
 export class GetServerAllTopicsRouter extends GetAllTopics {
-  constructor(public readonly Request: Request, public readonly Response: Response) {
+  constructor(public readonly Request: NextRequest, public readonly Response: NextResponse) {
     super(Request, Response)
   }
   public async get(): Promise<any> {
@@ -54,12 +56,24 @@ export class GetServerAllTopicsRouter extends GetAllTopics {
 }
 
 export class GetServerIdGamesCountRouter extends GetIdGamesCount {
-  constructor(public readonly Request: Request, public readonly Response: IGetIdGamesCountResponse) {
+  constructor(public readonly Request: NextRequest, public readonly Response: NextResponse) {
     super(Request, Response)
   }
   public async get(): Promise<any> {
-    const GamesCountRouter = new ProviderGameCountIdRouter(this.Request, this.response)
+    const GamesCountRouter = new ProviderGamesCountIdRouter(this.Request, this.response)
     return GamesCountRouter.use()
   }
 }
+
+export class GetServerUserIdGamesRouter extends GetUserIdGames {
+  constructor(public readonly Request: NextRequest, public readonly Response: NextResponse) {
+    super(Request, Response)
+  }
+  public async get(): Promise<any> {
+    const GamesCountRouter = new ProviderGamesUserIdRouter(this.Request, this.response)
+    return GamesCountRouter.use()
+  }
+}
+
+
 

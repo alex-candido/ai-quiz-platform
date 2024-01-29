@@ -1,15 +1,31 @@
-import { Clock, CopyCheck, Edit2 } from "lucide-react";
-import Link from "next/link";
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { Clock, CopyCheck, Edit2 } from 'lucide-react';
+import Link from 'next/link';
+
+import getAllUserIdGamesActionAsync from '@/redux/actions/games/get-all-user-id-games';
+import { RootState, useAppDispatch, useAppSelector } from '@/redux/store';
 
 interface HistoryComponentProps {
   limit: number;
   userId: string;
 }
 
-const HistoryComponent: React.FC<HistoryComponentProps> = ({ limit, userId }) => {
+const HistoryComponent: React.FC<HistoryComponentProps> = ({
+  limit,
+  userId,
+}) => {
+  const [games, setGames] = useState<GameData[]>([]);
 
-  // implement redux
-  const games = [] as GameData[];
+  const dispatch = useAppDispatch();
+  const gamesState = useAppSelector((state: RootState) => state.games);
+
+  useEffect(() => {
+    dispatch(getAllUserIdGamesActionAsync({ userId, limit }));
+    setGames(gamesState.games);
+  }, [dispatch]);
 
   return (
     <div className="space-y-8">
@@ -17,7 +33,7 @@ const HistoryComponent: React.FC<HistoryComponentProps> = ({ limit, userId }) =>
         return (
           <div className="flex items-center justify-between" key={game.id}>
             <div className="flex items-center">
-              {game.gameType === "mcq" ? (
+              {game.gameType === 'mcq' ? (
                 <CopyCheck className="mr-3" />
               ) : (
                 <Edit2 className="mr-3" />
@@ -34,7 +50,7 @@ const HistoryComponent: React.FC<HistoryComponentProps> = ({ limit, userId }) =>
                   {new Date(game.timeEnded ?? 0).toLocaleDateString()}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {game.gameType === "mcq" ? "Multiple Choice" : "Open-Ended"}
+                  {game.gameType === 'mcq' ? 'Multiple Choice' : 'Open-Ended'}
                 </p>
               </div>
             </div>

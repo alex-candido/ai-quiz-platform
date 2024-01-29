@@ -1,24 +1,17 @@
 import 'reflect-metadata';
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
 import '@/@server/shared/container/index';
+import { GetServerUserIdGamesRouter } from '@/@server/shared/infra/http/server';
 
-import { GetServerIdGamesCountRouter } from '@/@server/shared/infra/http/server';
-
-export async function GET(
-  req: Request,
-  { params }: { params: { userId: string } },
-) {
+export async function GET(req: NextRequest, res: NextResponse) {
   try {
-    const { userId } = params;
-    const getGamesCountRouter = new GetServerIdGamesCountRouter(req, {
-      userId,
-    });
-    const games_count = await getGamesCountRouter.get();
+    const getUserIdGamesRouter = new GetServerUserIdGamesRouter(req, res);
+    const games = await getUserIdGamesRouter.get();
 
-    return NextResponse.json(games_count);
+    return NextResponse.json(games);
   } catch (error) {
     if (error instanceof ZodError) {
       return NextResponse.json(
