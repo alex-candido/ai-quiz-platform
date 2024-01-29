@@ -1,5 +1,5 @@
 
-import { PostQuestions } from "@/@server/shared/infra/http/abstract/postQuestions";
+import { PostQuestions } from "@/@server/shared/infra/http/abstract/questions/postQuestions";
 import QuestionsController from "../controllers/QuestionsController";
 
 export class QuestionsRouter extends PostQuestions {

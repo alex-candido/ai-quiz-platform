@@ -1,4 +1,4 @@
-import { api } from "@/lib/fetcher";
+import { api } from "@/lib/api";
 
 const getAllQuestions= async (): Promise<QuestionData[]> => {
   const response = await api.get("/api/questions/");

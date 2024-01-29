@@ -3,7 +3,8 @@ import {
   PayloadAction,
   SerializedError
 } from '@reduxjs/toolkit';
-import { createQuestionsAsync } from '../actions/questions/create-questions';
+
+import createQuestionsActionAsync from '@/redux/actions/questions/create-questions';
 
 export interface IQuestionState {
   questions: QuestionData[];
@@ -36,11 +37,11 @@ export const questionsSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(createQuestionsAsync.pending, state => {
+      .addCase(createQuestionsActionAsync.pending, state => {
         state.isLoading = true;
       })
       .addCase(
-        createQuestionsAsync.fulfilled,
+        createQuestionsActionAsync.fulfilled,
         (state, action: PayloadAction<QuestionData>) => {
           state.isLoading = false;
           state.isError = false;

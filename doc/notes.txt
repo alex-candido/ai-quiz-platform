@@ -7,9 +7,9 @@
 --16:15 Setup NextAuth
 --30:22 Setup Providers
 --34:02 Setup Navbar
-56:24 Theme Toggle
-1:01:26 Home Page
-1:05:41 Dashboard Page
+--56:24 Theme Toggle
+--1:01:26 Home Page
+--1:05:41 Dashboard Page
 1:17:51 Word Cloud
 1:22:18 Create Quiz Form
 1:41:32 Game Logic Data Modelling

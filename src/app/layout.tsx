@@ -13,7 +13,7 @@ import Providers from '@/providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Elearning Platform',
+  title: 'Exames',
   description: 'Generate by create next app',
 };
 

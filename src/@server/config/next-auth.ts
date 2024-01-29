@@ -1,6 +1,7 @@
-import { prisma } from '@/@server/shared/infra/http/db/index';
+import prisma from '@/@server/shared/infra/http/db/data-source';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import {
+  getServerSession,
   type DefaultSession,
   type NextAuthOptions
 } from 'next-auth';
@@ -56,5 +57,9 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
+};
+
+export const getAuthSession = () => {
+  return getServerSession(authOptions);
 };
 
