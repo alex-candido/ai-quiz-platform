@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, SerializedError } from '@reduxjs/toolkit';
 
-import { getAllTopicsActionAsync } from '@/redux/actions/topics/get-all-topics';
+import getAllTopicsActionAsync from '@/redux/actions/topics/get-all-topics';
 
 export interface ITopicsState {
   topics: TopicsData[];

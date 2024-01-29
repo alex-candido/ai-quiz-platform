@@ -10,8 +10,8 @@
 --56:24 Theme Toggle
 --1:01:26 Home Page
 --1:05:41 Dashboard Page
-1:17:51 Word Cloud
-1:22:18 Create Quiz Form
+--1:17:51 Word Cloud
+--1:22:18 Create Quiz Form
 1:41:32 Game Logic Data Modelling
 1:47:06 OpenAI GPT Setup
 1:52:01 Generate Questions Endpoint

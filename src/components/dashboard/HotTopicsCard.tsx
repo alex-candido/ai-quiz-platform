@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { getAllTopicsActionAsync } from '@/redux/actions/topics/get-all-topics';
+import getAllTopicsActionAsync from '@/redux/actions/topics/get-all-topics';
 import { RootState, useAppDispatch, useAppSelector } from '@/redux/store';
 
 import {
