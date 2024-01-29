@@ -2,19 +2,21 @@ import "reflect-metadata";
 
 import { container } from "tsyringe";
 
-// Questions
-import QuestionsRepository from "@/@server/modules/Questions/infra/prisma/repositories/QuestionsRepository";
-import IQuestionsRepository from "@/@server/modules/Questions/repositories/IQuestionsRepository";
+// openai
+
+import IOpenAIApiRepository from "@/@server/modules/Questions/repositories/IOpenAIApiRepository";
 
 // Topics
 import GamesRepository from "@/@server/modules/Game/infra/prisma/repositories/GamesRepository";
 import TopicsRepository from "@/@server/modules/Game/infra/prisma/repositories/TopicsRepository";
 import IGamesRepository from "@/@server/modules/Game/repositories/IGamesRepository";
 import ITopicsRepository from "@/@server/modules/Game/repositories/ITopicsRepository";
+import OpenAIApiRepository from "@/@server/modules/Questions/infra/prisma/repositories/OpenAIApiRepository";
 
-container.registerSingleton<IQuestionsRepository>(
-  'QuestionsRepository',
-  QuestionsRepository,
+
+container.registerSingleton<IOpenAIApiRepository>(
+  'OpenAIApiRepository',
+  OpenAIApiRepository,
 );
 
 container.registerSingleton<ITopicsRepository>(
