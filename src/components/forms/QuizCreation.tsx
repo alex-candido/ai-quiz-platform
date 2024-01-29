@@ -1,8 +1,8 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios, { AxiosError } from 'axios';
-import React from 'react';
+import { AxiosError } from 'axios';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '../ui/use-toast';
 
 import { quizCreationSchema } from '@/schemas/forms/quiz';
-import LoadingQuestions from "../LoadingQuestions";
+import LoadingQuestions from '../LoadingQuestions';
 
 import {
   Card,
@@ -34,9 +34,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
+import createQuestionGameActionAsync from '@/redux/actions/games/create-questions-game';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
-
 
 type Input = z.infer<typeof quizCreationSchema>;
 
@@ -48,15 +48,8 @@ const QuizCreation: React.FC<QuizCreationProps> = ({ topic: topicParam }) => {
   const router = useRouter();
   const { toast } = useToast();
 
-  const [showLoader, setShowLoader] = React.useState(false);
-  const [finishedLoading, setFinishedLoading] = React.useState(false);
-
-  const { mutate: getQuestions, isPending } = useMutation({
-    mutationFn: async ({ amount, topic, type }: Input) => {
-      const response = await axios.post('/api/game', { amount, topic, type });
-      return response.data;
-    },
-  });
+  const [showLoader, setShowLoader] = useState(false);
+  const [finishedLoading, setFinishedLoading] = useState(false);
 
   const form = useForm<Input>({
     resolver: zodResolver(quizCreationSchema),
@@ -64,6 +57,12 @@ const QuizCreation: React.FC<QuizCreationProps> = ({ topic: topicParam }) => {
       topic: topicParam,
       type: 'mcq',
       amount: 3,
+    },
+  });
+
+  const { mutate: getQuestions, isPending } = useMutation({
+    mutationFn: async ({ amount, topic, type }: Input) => {
+      return await createQuestionGameActionAsync({ amount, topic, type });
     },
   });
 
