@@ -1,13 +1,15 @@
 import Link from 'next/link';
 
-import { getAuthSession } from "@/lib/session";
+// import { getAuthSession } from "@/lib/session";
 
 import SignInButton from "@/components/SignInButton";
 import ThemeToggle from "@/components/ThemeToggle";
 import UserAccountNav from "@/components/UserAccountNav";
+import { NextPageContext } from 'next';
+import { getSession } from 'next-auth/react';
 
-const Navbar = async () => {
-  const session = await getAuthSession();
+const Navbar = async (context: NextPageContext) => {
+  const session = await getSession(context);
 
   return (
     <div className="fixed inset-x-0 top-0 bg-white dark:bg-gray-950 z-[10] h-fit border-b border-zinc-300  py-2 ">

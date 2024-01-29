@@ -7,7 +7,9 @@ import QuestionsRepository from "@/@server/modules/Questions/infra/prisma/reposi
 import IQuestionsRepository from "@/@server/modules/Questions/repositories/IQuestionsRepository";
 
 // Topics
+import GamesRepository from "@/@server/modules/Game/infra/prisma/repositories/GamesRepository";
 import TopicsRepository from "@/@server/modules/Game/infra/prisma/repositories/TopicsRepository";
+import IGamesRepository from "@/@server/modules/Game/repositories/IGamesRepository";
 import ITopicsRepository from "@/@server/modules/Game/repositories/ITopicsRepository";
 
 container.registerSingleton<IQuestionsRepository>(
@@ -18,4 +20,9 @@ container.registerSingleton<IQuestionsRepository>(
 container.registerSingleton<ITopicsRepository>(
   'TopicsRepository',
   TopicsRepository,
+);
+
+container.registerSingleton<IGamesRepository>(
+  'GamesRepository',
+  GamesRepository,
 );

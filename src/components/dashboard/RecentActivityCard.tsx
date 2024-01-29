@@ -1,8 +1,11 @@
-import { getAuthSession } from "@/lib/session";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+'use client';
 
-import HistoryComponent from "@/components/HistoryComponent";
+import { useQuery } from '@tanstack/react-query';
+import { Session } from 'next-auth';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
+import HistoryComponent from '@/components/HistoryComponent';
 
 import {
   Card,
@@ -10,16 +13,23 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
+import getAllGameCountActionAsync from '@/redux/actions/games/get-all-games-count';
 
-const RecentActivityCard = async () => {
-  const session = await getAuthSession();
+interface RecentActivityCardProps {
+  session: Session;
+}
+
+const RecentActivityCard: React.FC<RecentActivityCardProps> = ({ session }) => {
   if (!session?.user) {
-    return redirect("/");
+    return redirect('/');
   }
 
-  // implement redux
-  const games_count = "";
+  const { data: games_count } = useQuery({
+    queryKey: ['gamesCount'],
+    queryFn: async () =>
+      getAllGameCountActionAsync({ userId: session.user.id }),
+  });
 
   return (
     <Card className="col-span-4 lg:col-span-3">

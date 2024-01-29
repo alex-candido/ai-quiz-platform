@@ -7,6 +7,7 @@ interface HistoryComponentProps {
 }
 
 const HistoryComponent: React.FC<HistoryComponentProps> = ({ limit, userId }) => {
+
   // implement redux
   const games = [] as GameData[];
 

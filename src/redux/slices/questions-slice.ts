@@ -4,7 +4,7 @@ import {
   SerializedError
 } from '@reduxjs/toolkit';
 
-import { createQuestionsActionAsync } from '@/redux/actions/questions/create-questions';
+import createQuestionsActionAsync from '@/redux/actions/questions/create-questions';
 
 export interface IQuestionState {
   questions: QuestionData[];

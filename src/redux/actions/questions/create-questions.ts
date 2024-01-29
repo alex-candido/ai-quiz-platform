@@ -1,7 +1,7 @@
-import { api } from "@/lib/fetcher";
+import { api } from "@/lib/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const createQuestionsActionAsync = createAsyncThunk(
+const createQuestionsActionAsync = createAsyncThunk(
   'questions/getAllQuestionsAsync',
   async () => {
     const data = {
@@ -11,8 +11,9 @@ export const createQuestionsActionAsync = createAsyncThunk(
       answer: 'moro com meus pais',
     }
 
-    const request = await api.post('/api/questions/', data);
-    const response = await request.data
-    return response;
+    const req = await api.post('/api/questions/', data);
+    return await req.data;
   },
 );
+
+export default createQuestionsActionAsync;

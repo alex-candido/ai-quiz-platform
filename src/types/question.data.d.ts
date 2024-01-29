@@ -1,10 +1,11 @@
 interface QuestionData {
   id: string;
-  name: string;
-  description: string;
   question: string;
   answer: string;
-  created_at: Date;
-  updated_at: Date;
+  gameId: string;
+  options: json;
+  percentageCorrect: float;
+  isCorrect: boolean;
+  questionType: sameTy;
+  userAnswer: string;
 }
-

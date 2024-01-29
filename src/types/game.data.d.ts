@@ -1,8 +1,8 @@
 interface GameData {
   id: string;
   userId: string;
-  timeStarted: Date;
+  timeStarted: DateTime;
   topic: string;
-  timeEnded: Date;
-  gameType: string;
+  timeEnded: DateTime;
+  gameType: GameType;
 }

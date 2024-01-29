@@ -1,11 +1,11 @@
-import { api } from "@/lib/fetcher";
+import { api } from "@/lib/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getAllTopicsActionAsync = createAsyncThunk(
-  'questions/getAllQuestionsAsync',
+  'topics/getAllTopicsActionAsync',
   async () => {
-    const request = await api.get('/api/topics/');
-    const response = await request.data;
-    return response;
+    const req = await api.get('/api/topics/');
+    const res = await req.data;
+    return res;
   },
 );

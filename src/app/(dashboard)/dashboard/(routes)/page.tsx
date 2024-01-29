@@ -1,4 +1,4 @@
-import { getAuthSession } from '@/lib/session';
+import { getServerSession } from "next-auth";
 import { redirect } from 'next/navigation';
 
 import DetailsDialog from '@/components/DetailsDialog';
@@ -13,9 +13,9 @@ export const metadata = {
 };
 
 export default async function DashboardPage() {
-  const session = await getAuthSession();
+  const session = await getServerSession();
   if (!session?.user) {
-    redirect('/');
+    redirect("/");
   }
 
   return (
@@ -31,7 +31,7 @@ export default async function DashboardPage() {
       </div>
       <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-7">
         <HotTopicsCard />
-        <RecentActivityCard />
+        <RecentActivityCard session={session} />
       </div>
     </main>
   );
