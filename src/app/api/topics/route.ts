@@ -1,15 +1,10 @@
-import "reflect-metadata";
-
+import prisma from "@/config/data-source";
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
-import '@/@server/shared/container/index';
-import { GetServerAllTopicsRouter } from "@/@server/shared/infra/http/server";
-
 export async function GET(req: NextRequest, res: NextResponse) {
   try {
-    const getTopicsRouter = new GetServerAllTopicsRouter(req, res);
-    const topics = await getTopicsRouter.get();
+    const topics = await prisma.topic_count.findMany({});
 
     return NextResponse.json(topics);
   } catch (error) {

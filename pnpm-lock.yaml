@@ -56,6 +56,9 @@ dependencies:
   '@types/redux-logger':
     specifier: ^3.0.12
     version: 3.0.12
+  '@types/string-similarity':
+    specifier: ^4.0.2
+    version: 4.0.2
   '@types/uuid':
     specifier: ^9.0.7
     version: 9.0.7
@@ -131,6 +134,9 @@ dependencies:
   reflect-metadata:
     specifier: ^0.2.1
     version: 0.2.1
+  string-similarity:
+    specifier: ^4.0.4
+    version: 4.0.4
   tailwind-merge:
     specifier: ^2.2.1
     version: 2.2.1
@@ -1327,6 +1333,10 @@ packages:
 
   /@types/semver@7.5.6:
     resolution: {integrity: sha512-dn1l8LaMea/IjDoHNd9J52uBbInB796CDffS6VdIxvqYCPSG0V0DzHp76GpaWnlhg88uYyPbXCDIowa86ybd5A==}
+    dev: false
+
+  /@types/string-similarity@4.0.2:
+    resolution: {integrity: sha512-LkJQ/jsXtCVMK+sKYAmX/8zEq+/46f1PTQw7YtmQwb74jemS1SlNLmARM2Zml9DgdDTWKAtc5L13WorpHPDjDA==}
     dev: false
 
   /@types/use-sync-external-store@0.0.3:
@@ -3831,6 +3841,11 @@ packages:
   /streamsearch@1.1.0:
     resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
     engines: {node: '>=10.0.0'}
+    dev: false
+
+  /string-similarity@4.0.4:
+    resolution: {integrity: sha512-/q/8Q4Bl4ZKAPjj8WerIBJWALKkaPRfrvhfF8k/B23i4nzrlRj2/go1m90In7nG/3XDSbOo0+pu6RvCTM9RGMQ==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     dev: false
 
   /string-width@4.2.3:

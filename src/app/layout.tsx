@@ -1,7 +1,4 @@
-import 'reflect-metadata';
 import './globals.css';
-
-import '@/@server/shared/container/index';
 
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';

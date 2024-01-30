@@ -1,13 +1,13 @@
-import prisma from '@/@server/shared/infra/http/db/data-source';
+import prisma from '@/config/data-source';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import {
-  getServerSession,
-  type DefaultSession,
-  type NextAuthOptions
+    getServerSession,
+    type DefaultSession,
+    type NextAuthOptions
 } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { env } from '@/@server/config/env-schema';
+import { env } from '@/config/env-schema';
 
 declare module 'next-auth' {
   interface Session extends DefaultSession {
