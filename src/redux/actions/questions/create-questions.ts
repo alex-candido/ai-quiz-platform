@@ -14,8 +14,6 @@ const createQuestionsActionAsync = async ({
   const url = `/api/questions/`;
   const { data } = await api.post(url, { amount, topic, type });
 
-  console.log(data)
-
   return data;
 };
 
