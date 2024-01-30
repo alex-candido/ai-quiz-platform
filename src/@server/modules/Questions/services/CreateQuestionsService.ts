@@ -37,7 +37,12 @@ export class CreateQuestionsService {
     temperature = 1,
     num_tries = 3,
     verbose = false,
-  }: IRequest): Promise<any> {
+  }: IRequest): Promise<
+    {
+      question: string;
+      answer: string;
+    }[]
+  > {
     // if the user input is in a list, we also process the output as a list of json
     const list_input: boolean = Array.isArray(user_prompt);
 

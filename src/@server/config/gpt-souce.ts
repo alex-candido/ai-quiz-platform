@@ -1,7 +1,8 @@
+import { env } from "@/@server/config/env-schema";
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: env.OPENAI_API_KEY,
 });
 
 const openaiSource = new OpenAIApi(configuration);

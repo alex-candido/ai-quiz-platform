@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { Prisma } from '@prisma/client';
 import { DefaultArgs } from '@prisma/client/runtime/library';
 
-import AppDataSource from '@/@server/shared/infra/http/db/data-source';
+import AppDataSource from '@/@server/config/data-source';
 import ITopicsRepository from '../../../repositories/ITopicsRepository';
 import Topics from '../entities/Topics';
 

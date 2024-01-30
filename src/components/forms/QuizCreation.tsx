@@ -34,7 +34,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import createQuestionGameActionAsync from '@/redux/actions/games/create-questions-game';
+import createQuestionsActionAsync from '@/redux/actions/questions/create-questions';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 
@@ -62,7 +62,7 @@ const QuizCreation: React.FC<QuizCreationProps> = ({ topic: topicParam }) => {
 
   const { mutate: getQuestions, isPending } = useMutation({
     mutationFn: async ({ amount, topic, type }: Input) => {
-      return await createQuestionGameActionAsync({ amount, topic, type });
+      return await createQuestionsActionAsync({ amount, topic, type });
     },
   });
 
@@ -101,7 +101,7 @@ const QuizCreation: React.FC<QuizCreationProps> = ({ topic: topicParam }) => {
   }
 
   return (
-    <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+    <div className="absolute -translate-x-1/2 -translate-y-[45%] top-1/2 left-1/2">
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Quiz Creation</CardTitle>

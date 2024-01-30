@@ -2,7 +2,7 @@ import "reflect-metadata";
 
 import { OpenAIApi } from "openai";
 
-import openaiSource from "@/@server/shared/infra/http/open-ai/gpt-souce";
+import openaiSource from "@/@server/config/gpt-souce";
 
 import ICreateChatCompletionDTO from "../../../dtos/ICreateChatCompletionDTO";
 import IOpenAIApiRepository from "../../../repositories/IOpenAIApiRepository";
@@ -24,7 +24,7 @@ class OpenAIApiRepository implements IOpenAIApiRepository {
     error_msg,
     user_prompt
   }: ICreateChatCompletionDTO): Promise<any> {
-    const openAiResponse = this.OpenAIRepository.createChatCompletion({
+    const openAiResponse = await this.OpenAIRepository.createChatCompletion({
       temperature: temperature,
       model: model,
       messages: [
@@ -35,6 +35,7 @@ class OpenAIApiRepository implements IOpenAIApiRepository {
         { role: "user", content: user_prompt.toString() },
       ],
     })
+
     return openAiResponse;
   };
 }

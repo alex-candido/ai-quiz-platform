@@ -5,12 +5,26 @@ import { ZodError } from 'zod';
 
 import '@/@server/shared/container/index';
 
+import { getAuthSession } from "@/@server/config/next-auth";
 import { PostServerQuestionsRouter } from '@/@server/shared/infra/http/server/';
 
 export async function POST(req: Request, res: Response) {
   try {
+    const session = await getAuthSession();
+
+    if (!session?.user) {
+      return NextResponse.json(
+        { error: "You must be logged in to create a game." },
+        {
+          status: 401,
+        }
+      );
+    }
+
     const postQuestionRouter = new PostServerQuestionsRouter(req, res);
     const questions = await postQuestionRouter.post()
+
+    console.log(questions)
 
     return NextResponse.json(
       {

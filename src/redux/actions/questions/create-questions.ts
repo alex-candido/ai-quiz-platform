@@ -1,19 +1,22 @@
-import { api } from "@/lib/api";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { api } from '@/lib/api';
 
-const createQuestionsActionAsync = createAsyncThunk(
-  'questions/getAllQuestionsAsync',
-  async () => {
-    const data = {
-      name: 'Alex candido',
-      description: 'aluno ifce',
-      question: 'quantas pessoas voce mora na sua residencia(irmaos, pais, familiares, conhecidos) ?',
-      answer: 'moro com meus pais',
-    }
+interface ICreateQuestionGameProps {
+  topic: string,
+  type: string,
+  amount: number,
+}
 
-    const req = await api.post('/api/questions/', data);
-    return await req.data;
-  },
-);
+const createQuestionsActionAsync = async ({
+  topic,
+  type,
+  amount
+}: ICreateQuestionGameProps): Promise<any> => {
+  const url = `/api/questions/`;
+  const { data } = await api.post(url, { amount, topic, type });
+
+  console.log(data)
+
+  return data;
+};
 
 export default createQuestionsActionAsync;
