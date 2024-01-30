@@ -1,15 +1,22 @@
-import 'reflect-metadata';
+import prisma from '@/config/data-source';
 
 import { NextRequest, NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
-import '@/@server/shared/container/index';
-import { GetServerUserIdGamesRouter } from '@/@server/shared/infra/http/server';
-
 export async function GET(req: NextRequest, res: NextResponse) {
   try {
-    const getUserIdGamesRouter = new GetServerUserIdGamesRouter(req, res);
-    const games = await getUserIdGamesRouter.get();
+    const userId = req.nextUrl.searchParams.get('userId');
+    const limit = req.nextUrl.searchParams.get('limit');
+
+    const games = await prisma.game.findMany({
+      take: Number(limit),
+      where: {
+        userId: String(userId),
+      },
+      orderBy: {
+        timeStarted: "desc",
+      },
+    })
 
     return NextResponse.json(games);
   } catch (error) {
