@@ -1,11 +1,13 @@
 import { api } from "@/lib/api";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getAllTopicsActionAsync = createAsyncThunk(
+const getAllTopicsActionAsync = createAsyncThunk(
   'topics/getAllTopicsActionAsync',
   async () => {
-    const req = await api.get('/api/topics/');
-    const res = await req.data;
-    return res;
+    const url = `/api/topics/`;
+    const { data } = await api.get(url);
+    return data;
   },
 );
+
+export default getAllTopicsActionAsync;

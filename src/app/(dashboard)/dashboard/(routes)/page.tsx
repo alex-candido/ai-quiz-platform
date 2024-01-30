@@ -8,9 +8,10 @@ import QuizMeCard from '@/components/dashboard/QuizMeCard';
 import RecentActivityCard from '@/components/dashboard/RecentActivityCard';
 
 export const metadata = {
-  title: 'Dashboard | Exams',
-  description: 'Exams yourself on anything!',
+  title: "Dashboard | Quizzzy",
+  description: "Quiz yourself on anything!",
 };
+
 
 export default async function DashboardPage() {
   const session = await getServerSession();

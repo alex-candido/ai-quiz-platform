@@ -13,8 +13,8 @@ import Providers from '@/providers';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Exames',
-  description: 'Generate by create next app',
+  title: "Quizmify",
+  description: "Quiz yourself on anything!",
 };
 
 export default function RootLayout({

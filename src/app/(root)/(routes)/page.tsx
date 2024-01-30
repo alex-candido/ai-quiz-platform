@@ -21,9 +21,9 @@ export default async function Homepage() {
     <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
       <Card className="w-[300px]">
         <CardHeader>
-          <CardTitle>Welcome to Exames 🔥!</CardTitle>
+          <CardTitle>Welcome to Quizzzy 🔥!</CardTitle>
           <CardDescription>
-            Exame is a platform for creating exames using AI!. Get started by
+            Quizzzy is a platform for creating quizzes using AI!. Get started by
             loggin in below!
           </CardDescription>
         </CardHeader>

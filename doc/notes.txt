@@ -10,8 +10,8 @@
 --56:24 Theme Toggle
 --1:01:26 Home Page
 --1:05:41 Dashboard Page
-1:17:51 Word Cloud
-1:22:18 Create Quiz Form
+--1:17:51 Word Cloud
+--1:22:18 Create Quiz Form
 1:41:32 Game Logic Data Modelling
 1:47:06 OpenAI GPT Setup
 1:52:01 Generate Questions Endpoint
@@ -56,3 +56,25 @@
 - feature/creating-nextauth-structure
   - **Descrição**
     - Adicionando estrutura do nextAuth;
+
+
+// const data = [
+//   {
+//     questions: [
+//       {
+//         question: "What is the purpose of a botanic garden?",
+//         answer: "To conserve and display a wide range of plant species.",
+//         option1: "To study different animal species.",
+//         option2: "To breed rare and andangered animals.",
+//         option3: "To train professional botanists",
+//       },
+//       {
+//         question: "What is the purpose of a botanic garden?",
+//         answer: "To conserve and display a wide range of plant species.",
+//         option1: "To study different animal species.",
+//         option2: "To breed rare and andangered animals.",
+//         option3: "To train professional botanists",
+//       },
+//     ]
+//   }
+// ]
