@@ -24,7 +24,7 @@ export async function POST(req: Request, res: Response) {
     let questions: any;
     if (type === "open_ended") {
       questions = await strict_output(
-        "You are a helpful AI that is able to generate a pair of question and answers, the length of each answer should not be more than 15 words, store all the pairs of answers and questions in a JSON array",
+        "You are a helpful AI that is able to generate a pair of question and answers, the length of each answer should not be more than 15 words, store all the pairs of answers and questions in a JSON array format",
         new Array(amount).fill(
           `You are to generate a random hard open-ended questions about ${topic}`
         ),
@@ -48,6 +48,11 @@ export async function POST(req: Request, res: Response) {
         }
       );
     }
+
+    console.log({
+      questions: questions,
+    })
+
     return NextResponse.json(
       {
         questions: questions,

@@ -6,11 +6,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { api } from '@/lib/api';
 import { cn, formatTimeDelta } from '@/lib/utils';
 import { checkAnswerSchema, endGameSchema } from '@/schemas/questions';
 import { Game, Question } from '@prisma/client';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { differenceInSeconds } from 'date-fns';
 import { BarChart, ChevronRight, Loader2, Timer } from 'lucide-react';
 import Link from 'next/link';
@@ -46,13 +46,13 @@ const MCQ: React.FC<MCQProps> = ({ game }: MCQProps) => {
 
   const { toast } = useToast();
 
-  const { mutate: checkAnswer, isLoading: isChecking } = useMutation({
+  const { mutate: checkAnswer, isPending: isChecking } = useMutation({
     mutationFn: async () => {
       const payload: z.infer<typeof checkAnswerSchema> = {
         questionId: currentQuestion.id,
         userInput: options[selectedChoice],
       };
-      const response = await axios.post(`/api/checkAnswer`, payload);
+      const response = await api.post(`/api/checkAnswer`, payload);
       return response.data;
     },
   });
@@ -62,7 +62,7 @@ const MCQ: React.FC<MCQProps> = ({ game }: MCQProps) => {
       const payload: z.infer<typeof endGameSchema> = {
         gameId: game.id,
       };
-      const response = await axios.post(`/api/endGame`, payload);
+      const response = await api.post(`/api/endGame`, payload);
       return response.data;
     },
   });
@@ -87,7 +87,7 @@ const MCQ: React.FC<MCQProps> = ({ game }: MCQProps) => {
           toast({
             title: 'Correct',
             description: 'You got it right!',
-            variant: 'success',
+            variant: 'default',
           });
         } else {
           setStats(stats => ({
@@ -186,6 +186,7 @@ const MCQ: React.FC<MCQProps> = ({ game }: MCQProps) => {
           </CardDescription>
         </CardHeader>
       </Card>
+
       <div className="flex flex-col items-center justify-center w-full mt-4">
         {options.map((option, index) => {
           return (

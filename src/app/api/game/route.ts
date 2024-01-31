@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import prisma from '@/config/data-source';
+import { strict_output } from '@/config/gpt-souce';
 import { getAuthSession } from '@/config/next-auth';
 import { quizCreationSchema } from '@/schemas/forms/quiz';
 
@@ -44,14 +44,41 @@ export async function POST(req: Request, res: Response) {
       },
     });
 
-    const { data } = await axios.post(
-      `${process.env.API_URL as string}/api/questions`,
-      {
-        amount,
-        topic,
-        type,
-      },
-    );
+    // const { data } = await api.post(`/api/questions/`,
+    //   {
+    //     amount,
+    //     topic,
+    //     type,
+    //   }
+    // );
+
+    let questions: any;
+    if (type === "open_ended") {
+      questions = await strict_output(
+        "You are a helpful AI that is able to generate a pair of question and answers, the length of each answer should not be more than 15 words, store all the pairs of answers and questions in a JSON array format",
+        new Array(amount).fill(
+          `You are to generate a random hard open-ended questions about ${topic}`
+        ),
+        {
+          question: "question",
+          answer: "answer with max length of 15 words",
+        }
+      );
+    } else if (type === "mcq") {
+      questions = await strict_output(
+        "You are a helpful AI that is able to generate mcq questions and answers, the length of each answer should not be more than 15 words, store all answers and questions and options in a JSON array",
+        new Array(amount).fill(
+          `You are to generate a random hard mcq question about ${topic}`
+        ),
+        {
+          question: "question",
+          answer: "answer with max length of 15 words",
+          option1: "option1 with max length of 15 words",
+          option2: "option2 with max length of 15 words",
+          option3: "option3 with max length of 15 words",
+        }
+      );
+    }
 
     if (type === 'mcq') {
       type mcqQuestion = {
@@ -62,7 +89,7 @@ export async function POST(req: Request, res: Response) {
         option3: string;
       };
 
-      const manyData = data.questions.map((question: mcqQuestion) => {
+      const manyData = questions.map((question: mcqQuestion) => {
         // mix up the options lol
         const options = [
           question.option1,
@@ -88,7 +115,7 @@ export async function POST(req: Request, res: Response) {
         answer: string;
       };
       await prisma.question.createMany({
-        data: data.questions.map((question: openQuestion) => {
+        data: questions.map((question: openQuestion) => {
           return {
             question: question.question,
             answer: question.answer,
@@ -98,6 +125,8 @@ export async function POST(req: Request, res: Response) {
         }),
       });
     }
+
+    console.log(questions);
 
     return NextResponse.json({ gameId: game.id }, { status: 200 });
   } catch (error) {
