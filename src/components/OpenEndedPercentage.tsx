@@ -1,8 +1,18 @@
+import { Card } from "@/components/ui/card";
+import { Percent, Target } from "lucide-react";
 
-const OpenEndedPercentage = () => {
+interface OpenEndedPercentageProps {
+  percentage: number;
+}
+
+const OpenEndedPercentage: React.FC<OpenEndedPercentageProps> = ({ percentage }) => {
   return (
-    <div>OpenEndedPercentage</div>
-  )
+    <Card className="flex flex-row items-center p-2">
+      <Target size={30} />
+      <span className="ml-3 text-2xl opacity-75">{percentage}</span>
+      <Percent className="" size={25} />
+    </Card>
+  );
 }
 
 export default OpenEndedPercentage

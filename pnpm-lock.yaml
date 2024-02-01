@@ -86,6 +86,9 @@ dependencies:
   joi:
     specifier: ^17.12.0
     version: 17.12.0
+  keyword-extractor:
+    specifier: ^0.0.28
+    version: 0.0.28
   lucide-react:
     specifier: ^0.314.0
     version: 0.314.0(react@18.2.0)
@@ -2953,6 +2956,11 @@ packages:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
     dependencies:
       json-buffer: 3.0.1
+
+  /keyword-extractor@0.0.28:
+    resolution: {integrity: sha512-oi7dSPpYtW/3fE0vZiqQgZ8mW3F1V9K4+rBJ0FcVrdXBEQuhZ0zKj7sX74eqGASuepLHf9aYdeonyKHWhYpHQA==}
+    engines: {node: '>= 0.10.0'}
+    dev: false
 
   /language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
