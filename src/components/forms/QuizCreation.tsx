@@ -34,7 +34,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
-import createQuestionsActionAsync from '@/redux/actions/questions/create-questions';
+import { api } from '@/lib/api';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 
@@ -51,18 +51,19 @@ const QuizCreation: React.FC<QuizCreationProps> = ({ topic: topicParam }) => {
   const [showLoader, setShowLoader] = useState(false);
   const [finishedLoading, setFinishedLoading] = useState(false);
 
+  const { mutate: getQuestions, isPending } = useMutation({
+    mutationFn: async ({ amount, topic, type }: Input) => {
+      const response = await api.post("/api/game/", { amount, topic, type });
+      return response.data;
+    },
+  });
+
   const form = useForm<Input>({
     resolver: zodResolver(quizCreationSchema),
     defaultValues: {
       topic: topicParam,
       type: 'mcq',
       amount: 3,
-    },
-  });
-
-  const { mutate: getQuestions, isPending } = useMutation({
-    mutationFn: async ({ amount, topic, type }: Input) => {
-      return await createQuestionsActionAsync({ amount, topic, type });
     },
   });
 

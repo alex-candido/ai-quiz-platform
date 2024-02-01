@@ -1,4 +1,4 @@
-import { Configuration, OpenAIApi } from "openai";
+import { Configuration, OpenAIApi } from 'openai';
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -13,12 +13,12 @@ export async function strict_output(
   system_prompt: string,
   user_prompt: string | string[],
   output_format: OutputFormat,
-  default_category: string = "",
+  default_category: string = '',
   output_value_only: boolean = false,
-  model: string = "gpt-3.5-turbo",
+  model: string = 'gpt-3.5-turbo-1106',
   temperature: number = 1,
   num_tries: number = 3,
-  verbose: boolean = false
+  verbose: boolean = false,
 ): Promise<
   {
     question: string;
@@ -33,11 +33,11 @@ export async function strict_output(
   const list_output: boolean = /\[.*?\]/.test(JSON.stringify(output_format));
 
   // start off with no error message
-  let error_msg: string = "";
+  let error_msg: string = '';
 
   for (let i = 0; i < num_tries; i++) {
     let output_format_prompt: string = `\nYou are to output the following in json format: ${JSON.stringify(
-      output_format
+      output_format,
     )}. \nDo not put quotation marks or escape character \\ in the output fields.`;
 
     if (list_output) {
@@ -60,35 +60,43 @@ export async function strict_output(
       model: model,
       messages: [
         {
-          role: "system",
+          role: 'system',
           content: system_prompt + output_format_prompt + error_msg,
         },
-        { role: "user", content: user_prompt.toString() },
+        { role: 'user', content: user_prompt.toString() },
       ],
     });
 
     let res: string =
-      response.data.choices[0].message?.content?.replace(/'/g, '"') ?? "";
+      response.data.choices[0].message?.content?.replace(/'/g, '"') ?? '';
 
     // ensure that we don't replace away apostrophes in text
     res = res.replace(/(\w)"(\w)/g, "$1'$2");
 
     if (verbose) {
       console.log(
-        "System prompt:",
-        system_prompt + output_format_prompt + error_msg
+        'System prompt:',
+        system_prompt + output_format_prompt + error_msg,
       );
-      console.log("\nUser prompt:", user_prompt);
-      console.log("\nGPT response:", res);
+      console.log('\nUser prompt:', user_prompt);
+      console.log('\nGPT response:', res);
     }
 
     // try-catch block to ensure output format is adhered to
     try {
-      let output: any = JSON.parse(res);
+      let output: any;
+
+      if (res.constructor === Array) {
+        output = res;
+      }
+
+      if (res.constructor === String) {
+        output = JSON.parse(res);
+      }
 
       if (list_input) {
         if (!Array.isArray(output)) {
-          throw new Error("Output format not in a list of json");
+          throw new Error('Output format not in a list of json');
         }
       } else {
         output = [output];
@@ -119,8 +127,8 @@ export async function strict_output(
               output[index][key] = default_category;
             }
             // if the output is a description format, get only the label
-            if (output[index][key].includes(":")) {
-              output[index][key] = output[index][key].split(":")[0];
+            if (output[index][key].includes(':')) {
+              output[index][key] = output[index][key].split(':')[0];
             }
           }
         }
@@ -138,8 +146,8 @@ export async function strict_output(
       return list_input ? output : output[0];
     } catch (e) {
       error_msg = `\n\nResult: ${res}\n\nError message: ${e}`;
-      console.log("An exception occurred:", e);
-      console.log("Current invalid json format:", res);
+      console.log('An exception occurred:', e);
+      console.log('Current invalid json format:', res, res.constructor);
     }
   }
 

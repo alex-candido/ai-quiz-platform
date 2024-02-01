@@ -78,3 +78,29 @@
 //     ]
 //   }
 // ]
+
+{
+  questions: [
+    {
+      question: 'What is the syntax to define a class in Python?',
+      answer: 'class ClassName:',
+      option1: 'class ClassName()',
+      option2: 'class(className)',
+      option3: 'class ClassName{'
+    },
+    {
+      question: 'How do you create an instance of a class in Python?',
+      answer: 'object = ClassName()',
+      option1: 'new ClassName()',
+      option2: 'ClassName object = new ClassName()',
+      option3: 'ClassName = object'
+    },
+    {
+      question: 'What is the concept of inheritance in Python?',
+      answer: 'A class can inherit attributes and methods from another class',
+      option1: 'Inheritance allows a class to have multiple parents',
+      option2: 'Inheritance is not supported in Python',
+      option3: 'Inheritance is the same as encapsulation'
+    }
+  ]
+}
