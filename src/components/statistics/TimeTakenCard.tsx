@@ -1,8 +1,30 @@
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { formatTimeDelta } from '@/lib/utils';
+import { differenceInSeconds } from 'date-fns';
+import { Hourglass } from 'lucide-react';
 
-const TimeTakenCard = () => {
-  return (
-    <div>TimeTakenCard</div>
-  )
+interface TimeTakenCardProps {
+  timeEnded: Date;
+  timeStarted: Date;
 }
 
-export default TimeTakenCard
+const TimeTakenCard: React.FC<TimeTakenCardProps> = ({
+  timeEnded,
+  timeStarted,
+}) => {
+  return (
+    <Card className="md:col-span-4">
+      <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+        <CardTitle className="text-2xl font-bold">Time Taken</CardTitle>
+        <Hourglass />
+      </CardHeader>
+      <CardContent>
+        <div className="text-sm font-medium">
+          {formatTimeDelta(differenceInSeconds(timeEnded, timeStarted))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default TimeTakenCard;
