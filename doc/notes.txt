@@ -1,0 +1,106 @@
+## Capitulos
+
+---0:00 Intro & Demo
+---4:50 Setup Project
+---7:10 Setup Shadcn
+--10:12 Setup Database & Prisma
+--16:15 Setup NextAuth
+--30:22 Setup Providers
+--34:02 Setup Navbar
+--56:24 Theme Toggle
+--1:01:26 Home Page
+--1:05:41 Dashboard Page
+--1:17:51 Word Cloud
+--1:22:18 Create Quiz Form
+1:41:32 Game Logic Data Modelling
+1:47:06 OpenAI GPT Setup
+1:52:01 Generate Questions Endpoint
+2:07:14 Create Game Endpoint
+2:17:59 React Query & Create Game Logic
+2:28:29 MCQ Page UI
+2:49:26 Check Answer Endpoint
+2:57:13 Link Check Answer to MCQ
+3:12:36 Time Delta Calculation
+3:17:33 Open Ended Game UI
+3:28:40 Blank Answer Input Component
+3:37:06 Finish Open Ended Game Logic
+3:44:34 Statistics Page
+4:00:28 Statistics Questions List
+4:12:02 Loading Page Logic
+4:24:59 Quiz History
+4:36:49 Word Cloud Topic Count
+4:46:22 Deploy To Vercel
+
+## Gerenciamento Ramificações do Sistema
+
+- staging
+  - **Descrição**
+    - Branch de homologação
+
+- feature/creating-structures-and-patterns
+  - **Descrição**
+    - Adicionando estrutura de ferramentas de análise e padrões de código;
+
+- feature/creating-directory-and-page-structure
+  - **Descrição**
+    - Adicionando estrutura de diretórios, pastas e arquivos do projeto;
+
+- feature/creating-redux-structure
+  - **Descrição**
+    - Adicionando estrutura do aplicativo Redux Toolkit;
+
+- feature/creating-prisma-structure
+  - **Descrição**
+    - Adicionando estrutura do prisma;
+
+- feature/creating-nextauth-structure
+  - **Descrição**
+    - Adicionando estrutura do nextAuth;
+
+
+// const data = [
+//   {
+//     questions: [
+//       {
+//         question: "What is the purpose of a botanic garden?",
+//         answer: "To conserve and display a wide range of plant species.",
+//         option1: "To study different animal species.",
+//         option2: "To breed rare and andangered animals.",
+//         option3: "To train professional botanists",
+//       },
+//       {
+//         question: "What is the purpose of a botanic garden?",
+//         answer: "To conserve and display a wide range of plant species.",
+//         option1: "To study different animal species.",
+//         option2: "To breed rare and andangered animals.",
+//         option3: "To train professional botanists",
+//       },
+//     ]
+//   }
+// ]
+
+{
+  questions: [
+    {
+      question: 'What is the syntax to define a class in Python?',
+      answer: 'class ClassName:',
+      option1: 'class ClassName()',
+      option2: 'class(className)',
+      option3: 'class ClassName{'
+    },
+    {
+      question: 'How do you create an instance of a class in Python?',
+      answer: 'object = ClassName()',
+      option1: 'new ClassName()',
+      option2: 'ClassName object = new ClassName()',
+      option3: 'ClassName = object'
+    },
+    {
+      question: 'What is the concept of inheritance in Python?',
+      answer: 'A class can inherit attributes and methods from another class',
+      option1: 'Inheritance allows a class to have multiple parents',
+      option2: 'Inheritance is not supported in Python',
+      option3: 'Inheritance is the same as encapsulation'
+    }
+  ]
+}
